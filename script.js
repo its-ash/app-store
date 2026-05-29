@@ -1,14 +1,19 @@
 const appsData = [
         {
                 name: "Workout",
-                icon: "https://github.com/its-ash/workout/blob/main/assets/icon/icon.png?raw=true",
-                link: "https://github.com/its-ash/workout/releases/download/20260427-144036/app-release.apk"
+                icon: "https://github.com/its-ash/workout/blob/master/public/icon.svg?raw=true",
+                link: "https://its-ash.github.io/workout/"
+        },
+        {
+                name: "Time Track",
+                icon: "https://github.com/its-ash/time-track/blob/main/public/favicon.png?raw=true",
+                link: "https://its-ash.github.io/time-track/"
         },
         {
                 name: "Bulk Uninstaller",
                 icon: "https://github.com/its-ash/bulk-uninstaller/blob/main/logo.png?raw=true",
                 link: "https://github.com/its-ash/bulk-uninstaller/releases/download/build-3-e552b0bf2782d6b4a6a18e4baff8fa05d0d66031/app-release.apk"
-        }
+        },
 ];
 
 const elements = {
