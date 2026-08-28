@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>App Store — Dark Developer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+          mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #0a0a0a; }
+  ::selection { background-color: #ffffff; color: #0a0a0a; }
+  .scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background-color: #262626; border-radius: 9999px; }
+</style>
+</head>
+<body class="bg-[#0a0a0a] text-gray-200 font-sans antialiased">
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#0a0a0a]/90 backdrop-blur supports-[backdrop-filter]:bg-[#0a0a0a]/80">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between gap-4">
+
+        <!-- Logo / wordmark -->
+        <a href="#" class="flex items-center gap-2 shrink-0">
+          <span class="relative flex h-8 w-8 items-center justify-center rounded-lg border border-white/20 bg-white/5">
+            <span class="font-mono text-sm leading-none text-white">&gt;_</span>
+          </span>
+          <span class="hidden sm:flex items-baseline gap-1">
+            <span class="text-base font-bold tracking-tight text-white">App</span>
+            <span class="text-base font-bold tracking-tight text-gray-400">Store</span>
+          </span>
+        </a>
+
+        <!-- Command-palette style search -->
+        <div class="flex-1 max-w-md mx-2 sm:mx-4">
+          <label class="group relative flex items-center">
+            <span class="pointer-events-none absolute left-3 flex h-4 w-4 items-center justify-center">
+              <span class="relative block h-2.5 w-2.5 rounded-full border border-gray-500 group-focus-within:border-gray-300">
+                <span class="absolute -bottom-1.5 -right-1.5 h-2 w-px rotate-45 bg-gray-500 origin-top group-focus-within:bg-gray-300"></span>
+              </span>
+            </span>
+            <input
+              type="text"
+              placeholder="Search apps..."
+              class="w-full rounded-lg border border-white/10 bg-white/[0.04] py-2 pl-9 pr-10 text-sm text-gray-200 placeholder-gray-500 outline-none transition focus:border-white/30 focus:bg-white/[0.06]"
+            />
+            <span class="pointer-events-none absolute right-2 hidden sm:flex h-5 min-w-5 items-center justify-center rounded border border-white/15 bg-white/5 px-1.5 font-mono text-[11px] text-gray-500">
+              /
+            </span>
+          </label>
+        </div>
+
+        <!-- GitHub profile link -->
+        <a
+          href="#"
+          class="flex items-center gap-2 shrink-0 rounded-lg border border-white/15 px-3 py-2 text-sm font-medium text-gray-200 transition hover:border-white/30 hover:bg-white/5"
+        >
+          <span class="relative flex h-4 w-4 items-center justify-center">
+            <span class="h-3.5 w-3.5 rounded-full border border-gray-300"></span>
+            <span class="absolute -bottom-1 h-2 w-2.5 rounded-t-full border-t border-l border-r border-gray-300"></span>
+          </span>
+          <span class="hidden md:inline font-mono text-xs text-gray-400">@owner</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- ============ HERO / INTRO STRIP ============ -->
+    <section class="pt-12 pb-8 sm:pt-16 sm:pb-10">
+      <p class="font-mono text-xs text-gray-500 mb-3">~/app-store $ ls --all</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+        Self-built software,<br class="hidden sm:block" /> shipped in the open.
+      </h1>
+      <p class="mt-4 max-w-2xl text-sm sm:text-base text-gray-400">
+        Every app below lives in its own public repository. Browse, filter by category, and jump straight to the source.
+      </p>
+    </section>
+
+    <!-- ============ CATEGORY FILTER ROW ============ -->
+    <section class="pb-6 border-b border-white/10">
+      <div class="flex flex-wrap gap-2">
+        <button class="rounded-full bg-white px-4 py-1.5 text-xs font-mono font-medium text-black transition">
+          All <span class="text-black/50">(12)</span>
+        </button>
+        <button class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-mono font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
+          CLI Tools <span class="text-gray-500">(3)</span>
+        </button>
+        <button class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-mono font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
+          Web Apps <span class="text-gray-500">(2)</span>
+        </button>
+        <button class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-mono font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
+          Productivity <span class="text-gray-500">(2)</span>
+        </button>
+        <button class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-mono font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
+          AI &amp; ML <span class="text-gray-500">(2)</span>
+        </button>
+        <button class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-mono font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
+          Dev Tools <span class="text-gray-500">(2)</span>
+        </button>
+        <button class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-mono font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
+          Utilities <span class="text-gray-500">(1)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ SORT / VIEW TOGGLE BAR ============ -->
+    <section class="flex flex-wrap items-center justify-between gap-4 py-6">
+      <div class="flex items-center gap-1 text-xs font-mono">
+        <span class="text-gray-500 mr-2">sort:</span>
+        <button class="rounded-md px-2.5 py-1.5 text-white bg-white/10 border border-white/10">Recently Updated</button>
+        <button class="rounded-md px-2.5 py-1.5 text-gray-500 hover:text-gray-200 hover:bg-white/5 transition">Most Stars</button>
+        <button class="rounded-md px-2.5 py-1.5 text-gray-500 hover:text-gray-200 hover:bg-white/5 transition">A–Z</button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline text-xs font-mono text-gray-500 mr-1">view:</span>
+        <div class="flex items-center rounded-md border border-white/10 p-0.5">
+          <button class="flex items-center justify-center rounded p-1.5 bg-white/10 text-white" aria-label="Grid view">
+            <span class="grid grid-cols-2 gap-0.5">
+              <span class="block h-1.5 w-1.5 rounded-[1px] bg-current"></span>
+              <span class="block h-1.5 w-1.5 rounded-[1px] bg-current"></span>
+              <span class="block h-1.5 w-1.5 rounded-[1px] bg-current"></span>
+              <span class="block h-1.5 w-1.5 rounded-[1px] bg-current"></span>
+            </span>
+          </button>
+          <button class="flex items-center justify-center rounded p-1.5 text-gray-500 hover:text-gray-200 transition" aria-label="List view">
+            <span class="flex flex-col gap-0.5">
+              <span class="block h-0.5 w-4 rounded-full bg-current"></span>
+              <span class="block h-0.5 w-4 rounded-full bg-current"></span>
+              <span class="block h-0.5 w-4 rounded-full bg-current"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APP GRID ============ -->
+    <section class="pb-20">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+        <!-- Card 1 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="font-mono text-sm text-gray-300">$_</span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">CLI Tools</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">flowctl</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Terminal task runner for chaining local dev scripts with live status output.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              1.2k
+            </span>
+            <span>Go</span>
+            <span>2 days ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="block h-4 w-4 rounded-full border-2 border-gray-300"></span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Web Apps</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">orbit-dash</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Self-hosted analytics dashboard with real-time websocket event streams.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              842
+            </span>
+            <span>TypeScript</span>
+            <span>5 hours ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="block h-4 w-4 rotate-45 border border-gray-300"></span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Productivity</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">noteforge</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Markdown-first note app with local-first sync and vim keybindings.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              3.4k
+            </span>
+            <span>Rust</span>
+            <span>1 week ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="font-mono text-sm text-gray-300">λ</span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">AI &amp; ML</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">promptbench</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Evaluation harness for benchmarking LLM prompts across providers.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              5.9k
+            </span>
+            <span>Python</span>
+            <span>1 day ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="grid grid-cols-2 gap-0.5">
+                <span class="block h-1.5 w-1.5 rounded-[1px] bg-gray-300"></span>
+                <span class="block h-1.5 w-1.5 rounded-[1px] bg-gray-500"></span>
+                <span class="block h-1.5 w-1.5 rounded-[1px] bg-gray-500"></span>
+                <span class="block h-1.5 w-1.5 rounded-[1px] bg-gray-300"></span>
+              </span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Dev Tools</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">schema-diff</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">CLI that diffs database schemas across environments and outputs migrations.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              621
+            </span>
+            <span>Go</span>
+            <span>3 weeks ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="block h-4 w-4 rounded-full border border-dashed border-gray-300"></span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Utilities</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">clipvault</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Encrypted clipboard history manager with global hotkey search.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              298
+            </span>
+            <span>Swift</span>
+            <span>4 days ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="font-mono text-sm text-gray-300">#!</span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">CLI Tools</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">envsync</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Syncs .env files securely across team machines via encrypted git hooks.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              1.8k
+            </span>
+            <span>TypeScript</span>
+            <span>6 days ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="block h-4 w-4 border-b-2 border-r-2 border-gray-300 rotate-45 -translate-y-0.5"></span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Productivity</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">taskgrid</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Keyboard-driven kanban board that lives entirely in your terminal.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              954
+            </span>
+            <span>Rust</span>
+            <span>2 weeks ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="font-mono text-sm text-gray-300">::</span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">AI &amp; ML</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">vecindex</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Lightweight embedded vector database for on-device semantic search.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              4.1k
+            </span>
+            <span>C++</span>
+            <span>12 hours ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="block h-4 w-4 rounded-lg border border-gray-300"></span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Dev Tools</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">apilint</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Static analyzer that lints OpenAPI specs for breaking changes pre-merge.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              1.5k
+            </span>
+            <span>Go</span>
+            <span>3 days ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="font-mono text-sm text-gray-300">{}</span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">Web Apps</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">jsonpad</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Browser-based JSON editor with schema validation and live diffing.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              2.7k
+            </span>
+            <span>JavaScript</span>
+            <span>9 hours ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+        <!-- Card 12 -->
+        <article class="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/25 hover:bg-white/[0.04]">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+              <span class="font-mono text-sm text-gray-300">~/</span>
+            </div>
+            <span class="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] text-gray-400">CLI Tools</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">portmap</h3>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">Visualizes and manages open local ports with a single terminal command.</p>
+          <div class="mt-auto flex items-center justify-between font-mono text-xs text-gray-500 mb-4">
+            <span class="flex items-center gap-1.5">
+              <svg class="h-3 w-3 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6-4.6-4.1 6.1-.6z"/></svg>
+              412
+            </span>
+            <span>Go</span>
+            <span>1 month ago</span>
+          </div>
+          <a href="#" class="w-full rounded-lg border border-white/15 py-2 text-center text-xs font-mono font-medium text-gray-200 transition hover:border-white/40 hover:bg-white hover:text-black">View on GitHub</a>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <span class="flex h-6 w-6 items-center justify-center rounded border border-white/20 bg-white/5">
+            <span class="font-mono text-[10px] leading-none text-gray-300">&gt;_</span>
+          </span>
+          <span class="font-mono text-xs text-gray-500">app-store / built &amp; maintained by one dev</span>
+        </div>
+        <nav class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-gray-500">
+          <a href="#" class="hover:text-gray-200 transition">GitHub</a>
+          <a href="#" class="hover:text-gray-200 transition">RSS</a>
+          <a href="#" class="hover:text-gray-200 transition">Changelog</a>
+          <a href="#" class="hover:text-gray-200 transition">Contact</a>
+        </nav>
+      </div>
+      <p class="mt-8 font-mono text-[11px] text-gray-600">© 2026 App Store. All apps open-source under their respective repo licenses.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

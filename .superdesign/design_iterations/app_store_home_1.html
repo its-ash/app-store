@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>App Store — Personal Apps by Ashvini</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Inter, sans-serif; }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 9999px; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+</head>
+<body class="bg-[#fafafa] text-black antialiased">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-black/5">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-16 flex items-center justify-between gap-4">
+
+        <!-- Logo / wordmark -->
+        <a href="#" class="flex items-center gap-3 shrink-0">
+          <span class="relative w-8 h-8 rounded-xl bg-black flex items-center justify-center">
+            <span class="w-3 h-3 rounded-full bg-white"></span>
+          </span>
+          <span class="text-lg font-semibold tracking-tight hidden sm:block">App Store</span>
+        </a>
+
+        <!-- Search -->
+        <div class="flex-1 max-w-md mx-2">
+          <label class="relative flex items-center">
+            <span class="absolute left-4 flex items-center justify-center">
+              <span class="relative w-4 h-4 border-2 border-black/40 rounded-full block">
+                <span class="absolute -bottom-1.5 -right-1.5 w-2 h-[2px] bg-black/40 rotate-45 block"></span>
+              </span>
+            </span>
+            <input
+              type="text"
+              placeholder="Search apps..."
+              class="w-full h-10 pl-11 pr-4 rounded-full bg-black/[0.04] border border-transparent focus:border-black/20 focus:bg-white outline-none text-sm placeholder:text-black/40 transition"
+            />
+          </label>
+        </div>
+
+        <!-- Right links -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <a href="#" class="hidden md:flex items-center gap-2 h-10 px-4 rounded-full border border-black/10 hover:border-black/30 transition text-sm font-medium">
+            <span class="w-4 h-4 rounded-[4px] border-2 border-black block"></span>
+            GitHub
+          </a>
+          <a href="#" class="flex items-center h-10 px-4 sm:px-5 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">
+            Submit App
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile category pills (shown below navbar on small/medium screens) -->
+      <div class="lg:hidden pb-4 -mx-1">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar px-1">
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-black text-white text-sm font-medium">
+            All <span class="text-xs text-white/70">24</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            Productivity <span class="text-xs text-black/40">6</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            Developer Tools <span class="text-xs text-black/40">7</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            Design <span class="text-xs text-black/40">3</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            Utilities <span class="text-xs text-black/40">4</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            Games <span class="text-xs text-black/40">2</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            AI &amp; ML <span class="text-xs text-black/40">5</span>
+          </button>
+          <button class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 transition">
+            Media <span class="text-xs text-black/40">2</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== BODY LAYOUT ===================== -->
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex gap-8 xl:gap-12">
+
+    <!-- ============ SIDEBAR (desktop) ============ -->
+    <aside class="hidden lg:block w-56 xl:w-64 shrink-0">
+      <div class="sticky top-28">
+        <p class="text-xs font-semibold uppercase tracking-wider text-black/40 px-4 mb-3">Categories</p>
+        <nav class="flex flex-col gap-1">
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl bg-black text-white text-sm font-medium">
+            <span>All Apps</span>
+            <span class="text-xs bg-white/15 rounded-full px-2 py-0.5">24</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>Productivity</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">6</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>Developer Tools</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">7</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>Design</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">3</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>Utilities</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">4</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>Games</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">2</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>AI &amp; ML</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">5</span>
+          </a>
+          <a href="#" class="flex items-center justify-between h-11 px-4 rounded-2xl hover:bg-black/5 transition text-sm font-medium">
+            <span>Media</span>
+            <span class="text-xs text-black/40 bg-black/5 rounded-full px-2 py-0.5">2</span>
+          </a>
+        </nav>
+
+        <div class="mt-8 p-5 rounded-2xl border border-black/10">
+          <p class="text-sm font-semibold mb-1">Build in public</p>
+          <p class="text-xs text-black/50 leading-relaxed mb-4">Every app here is open source. Star a repo, open an issue, or fork it.</p>
+          <a href="#" class="flex items-center justify-center h-9 rounded-full border border-black/15 text-xs font-medium hover:border-black/30 transition">View all on GitHub</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <main class="flex-1 min-w-0">
+
+      <!-- Page heading -->
+      <div class="mb-8">
+        <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-2">All Apps</h1>
+        <p class="text-black/50 text-sm sm:text-base">24 independent apps, built and maintained in the open.</p>
+      </div>
+
+      <!-- Filter / sort bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 pb-6 border-b border-black/5">
+        <div class="flex items-center gap-2 text-sm">
+          <span class="font-semibold">All Apps</span>
+          <span class="text-black/30">/</span>
+          <span class="text-black/40">24 results</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Sort dropdown -->
+          <div class="relative">
+            <select class="appearance-none h-10 pl-4 pr-9 rounded-full border border-black/10 text-sm font-medium bg-white hover:border-black/30 transition outline-none cursor-pointer">
+              <option>Newest</option>
+              <option>Most Starred</option>
+              <option>Alphabetical</option>
+            </select>
+            <span class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-2 h-2 border-r-2 border-b-2 border-black/50 rotate-45 -mt-1"></span>
+          </div>
+
+          <!-- View toggle -->
+          <div class="flex items-center h-10 rounded-full border border-black/10 p-1 bg-white">
+            <button class="flex items-center justify-center w-8 h-8 rounded-full bg-black">
+              <span class="grid grid-cols-2 gap-[3px]">
+                <span class="w-[6px] h-[6px] bg-white rounded-[1px]"></span>
+                <span class="w-[6px] h-[6px] bg-white rounded-[1px]"></span>
+                <span class="w-[6px] h-[6px] bg-white rounded-[1px]"></span>
+                <span class="w-[6px] h-[6px] bg-white rounded-[1px]"></span>
+              </span>
+            </button>
+            <button class="flex items-center justify-center w-8 h-8 rounded-full">
+              <span class="flex flex-col gap-[3px]">
+                <span class="w-4 h-[2px] bg-black/40 rounded-full"></span>
+                <span class="w-4 h-[2px] bg-black/40 rounded-full"></span>
+                <span class="w-4 h-[2px] bg-black/40 rounded-full"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ APP GRID ============ -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-800 to-black flex items-center justify-center shrink-0">
+              <span class="text-white font-semibold text-lg">Fl</span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Productivity</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Flowline</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">A minimalist habit tracker with streaks, reminders, and a weekly review ritual.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              1.2k
+            </span>
+            <span>Updated 2d ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shrink-0 relative overflow-hidden">
+              <span class="absolute w-8 h-8 border-2 border-white/80 rounded-md rotate-12"></span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Developer Tools</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Cursorless CLI</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">A terminal-first snippet manager that syncs across machines via git.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              3.8k
+            </span>
+            <span>Updated 5h ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-800 to-black flex items-center justify-center shrink-0">
+              <span class="w-6 h-6 rounded-full border-2 border-white"></span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Design</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Paletteer</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Generate accessible color palettes from a single seed color, exportable as CSS or Tailwind config.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              892
+            </span>
+            <span>Updated 1w ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shrink-0">
+              <span class="text-white font-semibold text-lg">Mk</span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Productivity</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Markline</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">A distraction-free markdown editor with live preview and local-first storage.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              2.4k
+            </span>
+            <span>Updated 3d ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-800 to-black flex items-center justify-center shrink-0 relative">
+              <span class="absolute w-7 h-7 border-2 border-white rounded-full"></span>
+              <span class="absolute w-2.5 h-2.5 bg-white rounded-full"></span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">AI &amp; ML</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Promptly</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Version-control your LLM prompts with diffing, tagging, and A/B eval runs.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              5.1k
+            </span>
+            <span>Updated 1d ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shrink-0">
+              <span class="w-6 h-6 bg-white" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Utilities</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Quietly</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Menu bar app that silences notifications on a schedule you actually stick to.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              647
+            </span>
+            <span>Updated 4d ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-800 to-black flex items-center justify-center shrink-0">
+              <span class="text-white font-semibold text-lg">Px</span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Games</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Pixel Drift</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">A tiny browser-based puzzle game about steering light through mirrors.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              1.9k
+            </span>
+            <span>Updated 2w ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shrink-0">
+              <span class="grid grid-cols-2 gap-1">
+                <span class="w-2 h-2 bg-white rounded-full"></span>
+                <span class="w-2 h-2 bg-white rounded-full"></span>
+                <span class="w-2 h-2 bg-white rounded-full"></span>
+                <span class="w-2 h-2 bg-white rounded-full"></span>
+              </span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Developer Tools</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Schemaless</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Instantly scaffold typed REST APIs from a JSON sample, no config required.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              4.6k
+            </span>
+            <span>Updated 6h ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-800 to-black flex items-center justify-center shrink-0">
+              <span class="w-7 h-7 rounded-2xl border-2 border-white" style="clip-path: inset(0 0 50% 0);"></span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Media</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Waveform</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Trim, transcribe, and export podcast clips right in your browser tab.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              1.1k
+            </span>
+            <span>Updated 3w ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shrink-0">
+              <span class="text-white font-semibold text-lg">Rn</span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Utilities</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Rename Ninja</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Bulk rename thousands of files using regex patterns and live preview.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              738
+            </span>
+            <span>Updated 5d ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-800 to-black flex items-center justify-center shrink-0">
+              <span class="relative w-6 h-6">
+                <span class="absolute inset-0 border-2 border-white rounded-full"></span>
+                <span class="absolute top-1/2 left-1/2 w-3 h-[2px] bg-white -translate-y-1/2 -translate-x-1/2 rotate-45"></span>
+              </span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">AI &amp; ML</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Vectr</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Self-hosted vector search you can spin up with a single Docker command.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              6.3k
+            </span>
+            <span>Updated 12h ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+        <!-- Card 12 -->
+        <article class="group flex flex-col p-6 rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shrink-0">
+              <span class="text-white font-semibold text-lg">Tb</span>
+            </div>
+            <span class="text-xs font-medium px-3 py-1 rounded-full bg-black/[0.05] text-black/60">Productivity</span>
+          </div>
+          <h3 class="text-base font-semibold mb-1">Tabloom</h3>
+          <p class="text-sm text-black/50 leading-relaxed mb-5 flex-1">Turns your 80 open browser tabs into a tidy, searchable reading list.</p>
+          <div class="flex items-center gap-4 text-xs text-black/40 mb-5">
+            <span class="flex items-center gap-1.5">
+              <svg viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-black/40"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z"/></svg>
+              2.7k
+            </span>
+            <span>Updated 1d ago</span>
+          </div>
+          <a href="#" class="flex items-center justify-center h-10 rounded-full bg-black text-white text-sm font-medium hover:bg-black/85 transition">View on GitHub</a>
+        </article>
+
+      </div>
+
+      <!-- Load more -->
+      <div class="flex justify-center mt-12">
+        <button class="flex items-center justify-center h-11 px-8 rounded-full border border-black/10 text-sm font-medium hover:border-black/30 hover:bg-black/[0.02] transition">
+          Load more apps
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-black/5 mt-20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-lg bg-black flex items-center justify-center">
+            <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+          </span>
+          <span class="text-sm font-semibold">App Store</span>
+        </div>
+
+        <nav class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-black/50">
+          <a href="#" class="hover:text-black transition">All Apps</a>
+          <a href="#" class="hover:text-black transition">Categories</a>
+          <a href="#" class="hover:text-black transition">GitHub</a>
+          <a href="#" class="hover:text-black transition">Submit an App</a>
+          <a href="#" class="hover:text-black transition">Contact</a>
+        </nav>
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black/40">
+        <p>&copy; 2026 Ashvini Jangid. All apps open source, built independently.</p>
+        <p>Made with care, shipped from the terminal.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

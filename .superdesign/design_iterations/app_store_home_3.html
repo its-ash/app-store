@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>App Store — Apps, built in the open.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif; }
+  .grain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 6px 6px;
+    mix-blend-mode: overlay;
+    pointer-events:none;
+  }
+  .star::before{
+    content:"★";
+  }
+</style>
+</head>
+<body class="bg-white text-black antialiased">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-black/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo / wordmark -->
+        <a href="#top" class="flex items-center gap-3 group">
+          <span class="relative w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-black flex items-center justify-center shrink-0">
+            <span class="absolute inset-0 rounded-2xl border border-white/20"></span>
+            <span class="w-3 h-3 sm:w-3.5 sm:h-3.5 bg-white rounded-full"></span>
+            <span class="absolute w-full h-full rounded-2xl" style="background: conic-gradient(from 45deg, rgba(255,255,255,0.15), transparent 40%);"></span>
+          </span>
+          <span class="text-lg sm:text-xl font-black tracking-tight leading-none">App Store</span>
+        </a>
+
+        <!-- Nav links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+          <a href="#top" class="hover:opacity-60 transition-opacity">Home</a>
+          <a href="#catalog" class="hover:opacity-60 transition-opacity">Categories</a>
+          <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
+        </nav>
+
+        <!-- Search icon button -->
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button aria-label="Search" class="w-10 h-10 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors group">
+            <span class="relative block w-4 h-4">
+              <span class="absolute top-0 left-0 w-3 h-3 rounded-full border-2 border-current"></span>
+              <span class="absolute bottom-0 right-0 w-1.5 h-0.5 bg-current rotate-45 origin-right"></span>
+            </span>
+          </button>
+          <a href="#catalog" class="hidden sm:inline-flex items-center rounded-full bg-black text-white text-sm font-semibold px-4 py-2 hover:opacity-80 transition-opacity">
+            Browse apps
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-24 pb-12 sm:pb-16 lg:pb-20">
+      <div class="max-w-3xl">
+        <p class="text-xs sm:text-sm font-bold tracking-widest uppercase mb-4 sm:mb-6 opacity-60">Independent software, one repo at a time</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.02]">
+          Apps, built<br class="hidden sm:block" /> in the open.
+        </h1>
+        <p class="mt-6 sm:mt-8 text-base sm:text-lg lg:text-xl opacity-70 max-w-xl leading-relaxed">
+          A personal catalog of tools, utilities, and experiments — every app open-source, every commit public, every release shipped by hand.
+        </p>
+
+        <!-- Search bar -->
+        <div class="mt-8 sm:mt-10">
+          <label for="hero-search" class="sr-only">Search apps</label>
+          <div class="flex items-center gap-3 rounded-2xl border-2 border-black px-4 sm:px-6 py-3 sm:py-4 max-w-xl focus-within:bg-black focus-within:text-white transition-colors group">
+            <span class="relative block w-5 h-5 shrink-0">
+              <span class="absolute top-0 left-0 w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+              <span class="absolute bottom-0 right-0 w-2 h-0.5 bg-current rotate-45 origin-right"></span>
+            </span>
+            <input id="hero-search" type="text" placeholder="Search apps, categories, tags…"
+              class="w-full bg-transparent outline-none placeholder-current placeholder-opacity-40 text-sm sm:text-base font-medium" />
+            <span class="hidden sm:inline-flex items-center justify-center text-xs font-bold border border-current rounded-md px-2 py-1 opacity-50">/</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED BENTO GRID -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24">
+      <div class="flex items-end justify-between mb-6 sm:mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Featured</h2>
+        <span class="text-xs sm:text-sm font-semibold opacity-50">6 highlighted builds</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:auto-rows-[180px]">
+
+        <!-- Tile 1: Large 2x2 -->
+        <article class="relative overflow-hidden rounded-3xl sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[280px] lg:min-h-0 shadow-lg group cursor-pointer">
+          <div class="absolute inset-0 grain" style="background: radial-gradient(120% 120% at 15% 15%, #4b4b4b 0%, #0a0a0a 55%, #000 100%);"></div>
+          <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px);"></div>
+          <div class="relative h-full flex flex-col justify-between p-6 sm:p-8 lg:p-10 text-white">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center rounded-full border border-white/40 px-3 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider">Flagship</span>
+              <span class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 border border-white/30 flex items-center justify-center">
+                <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-white"></span>
+              </span>
+            </div>
+            <div>
+              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight">Nimbus Notes</h3>
+              <p class="mt-2 sm:mt-3 text-sm sm:text-base text-white/70 max-w-sm">A fast, local-first markdown editor with end-to-end encrypted sync.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tile 2: 1x1 -->
+        <article class="relative overflow-hidden rounded-3xl min-h-[180px] shadow-lg group cursor-pointer">
+          <div class="absolute inset-0 grain" style="background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 40%, #cfcfcf 100%);"></div>
+          <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full border border-black/10"></div>
+          <div class="relative h-full flex flex-col justify-between p-6 text-black">
+            <span class="inline-flex items-center rounded-full border border-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-wider self-start">Dev Tools</span>
+            <div>
+              <h3 class="text-xl font-black tracking-tight">Pathwise CLI</h3>
+              <p class="mt-1 text-xs text-black/60">Route your monorepo scripts, fast.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tile 3: 1x1 -->
+        <article class="relative overflow-hidden rounded-3xl min-h-[180px] shadow-lg group cursor-pointer">
+          <div class="absolute inset-0 grain" style="background: radial-gradient(120% 140% at 85% 15%, #3a3a3a 0%, #111 60%, #000 100%);"></div>
+          <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 18px 18px;"></div>
+          <div class="relative h-full flex flex-col justify-between p-6 text-white">
+            <span class="inline-flex items-center rounded-full border border-white/40 px-3 py-1 text-[10px] font-bold uppercase tracking-wider self-start">AI &amp; ML</span>
+            <div>
+              <h3 class="text-xl font-black tracking-tight">Loomcast</h3>
+              <p class="mt-1 text-xs text-white/60">On-device transcription &amp; summaries.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tile 4: wide 2x1 -->
+        <article class="relative overflow-hidden rounded-3xl sm:col-span-2 min-h-[180px] shadow-lg group cursor-pointer">
+          <div class="absolute inset-0 grain" style="background: linear-gradient(115deg, #050505 0%, #2b2b2b 45%, #060606 100%);"></div>
+          <div class="absolute inset-y-0 right-0 w-1/2" style="background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 16px);"></div>
+          <div class="relative h-full flex flex-col justify-between p-6 sm:p-8 text-white">
+            <span class="inline-flex items-center rounded-full border border-white/40 px-3 py-1 text-[10px] font-bold uppercase tracking-wider self-start">Design Tools</span>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-black tracking-tight">Grid Foundry</h3>
+              <p class="mt-1 text-xs sm:text-sm text-white/60">Generate design-token grids from a single scale.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tile 5: 1x1 -->
+        <article class="relative overflow-hidden rounded-3xl min-h-[180px] shadow-lg group cursor-pointer">
+          <div class="absolute inset-0 grain" style="background: radial-gradient(100% 100% at 20% 90%, #d9d9d9 0%, #fafafa 55%, #ececec 100%);"></div>
+          <div class="absolute right-4 bottom-4 w-16 h-16 rounded-3xl border border-black/15 rotate-12"></div>
+          <div class="relative h-full flex flex-col justify-between p-6 text-black">
+            <span class="inline-flex items-center rounded-full border border-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-wider self-start">Utilities</span>
+            <div>
+              <h3 class="text-xl font-black tracking-tight">Quiet Timer</h3>
+              <p class="mt-1 text-xs text-black/60">A menu-bar focus timer, nothing else.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CATEGORY FILTER + CATALOG -->
+    <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24">
+      <div class="border-t border-black/10 pt-12 sm:pt-16">
+        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Browse all apps</h2>
+        <p class="mt-2 text-sm sm:text-base opacity-60 max-w-lg">Every project below links straight to its GitHub repository — issues, releases, and source included.</p>
+
+        <!-- Pills -->
+        <div class="mt-6 sm:mt-8 flex flex-wrap gap-2 sm:gap-3">
+          <button class="rounded-full bg-black text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5">All</button>
+          <button class="rounded-full border border-black/30 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 hover:border-black transition-colors">Productivity</button>
+          <button class="rounded-full border border-black/30 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 hover:border-black transition-colors">Developer Tools</button>
+          <button class="rounded-full border border-black/30 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 hover:border-black transition-colors">Design Tools</button>
+          <button class="rounded-full border border-black/30 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 hover:border-black transition-colors">AI &amp; ML</button>
+          <button class="rounded-full border border-black/30 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 hover:border-black transition-colors">Utilities</button>
+          <button class="rounded-full border border-black/30 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 hover:border-black transition-colors">Games</button>
+        </div>
+      </div>
+
+      <!-- Catalog grid -->
+      <div class="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+
+        <!-- Card 1 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 rounded-full border-2 border-white"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Nimbus Notes</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Local-first markdown editor with encrypted cross-device sync.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Productivity</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>2.4k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 rotate-45 border-2 border-white"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Pathwise CLI</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Route and cache monorepo scripts with a single dependency graph.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Developer Tools</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>1.8k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 bg-white" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Loomcast</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">On-device transcription and meeting summaries, no cloud required.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">AI &amp; ML</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>3.1k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="grid grid-cols-2 gap-0.5">
+              <span class="w-1.5 h-1.5 bg-white rounded-sm"></span>
+              <span class="w-1.5 h-1.5 bg-white rounded-sm"></span>
+              <span class="w-1.5 h-1.5 bg-white rounded-sm"></span>
+              <span class="w-1.5 h-1.5 bg-white rounded-sm"></span>
+            </span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Grid Foundry</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Generate consistent design-token grids from a single type scale.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Design Tools</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>942</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 rounded-full border-2 border-white border-dashed"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Quiet Timer</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">A distraction-free menu-bar focus timer. That's the whole app.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Utilities</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>612</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-3 border-2 border-white rounded-sm relative">
+              <span class="absolute -top-1.5 left-1 w-2 h-1.5 border-2 border-b-0 border-white rounded-t-sm"></span>
+            </span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Latchbox</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Self-hosted secrets manager with short-lived access tokens.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Developer Tools</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>1.2k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 rounded-full bg-white" style="mask: radial-gradient(circle at 65% 35%, transparent 35%, black 36%);"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Tally Sheets</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Lightweight spreadsheets that compile to static, shareable pages.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Productivity</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>780</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="relative w-4 h-4">
+              <span class="absolute inset-0 rounded-full border-2 border-white"></span>
+              <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full"></span>
+            </span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Pixel Foundry</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">A tiny top-down puzzle game about rerouting light through mirrors.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Games</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>4.5k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 border-2 border-white" style="border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Driftwood</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Ambient soundscape mixer for deep work, with offline presets.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Utilities</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>1.6k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 bg-white" style="clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Signalboard</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Self-hosted status page and uptime monitor with webhook alerts.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Developer Tools</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>2.9k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="flex gap-1 items-end">
+              <span class="w-1 h-2 bg-white"></span>
+              <span class="w-1 h-3.5 bg-white"></span>
+              <span class="w-1 h-2.5 bg-white"></span>
+            </span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Ledgerline</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Personal finance dashboard that never leaves your device.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Productivity</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>3.7k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Card 12 -->
+        <article class="rounded-2xl border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+          <div class="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
+            <span class="w-4 h-4 border-2 border-white rounded-full" style="background: conic-gradient(white 0deg 270deg, transparent 270deg 360deg); border: none; mask: radial-gradient(circle, transparent 45%, black 46%);"></span>
+          </div>
+          <h3 class="text-lg font-black tracking-tight">Orbit Sync</h3>
+          <p class="mt-2 text-sm opacity-60 leading-relaxed flex-grow">Peer-to-peer file sync across devices, no server in the middle.</p>
+          <div class="mt-4 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full border border-black/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Utilities</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold opacity-60"><span class="star text-sm"></span>2.1k</span>
+          </div>
+          <a href="#" class="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-black text-xs sm:text-sm font-bold px-4 py-2.5 hover:bg-black hover:text-white transition-colors">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-current"></span>
+            View on GitHub
+          </a>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="about" class="border-t border-black/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8 sm:gap-12">
+        <div class="max-w-sm">
+          <a href="#top" class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-2xl bg-black flex items-center justify-center">
+              <span class="w-3 h-3 bg-white rounded-full"></span>
+            </span>
+            <span class="text-lg font-black tracking-tight">App Store</span>
+          </a>
+          <p class="text-sm opacity-60 leading-relaxed">Independently built and maintained software. Every app is open-source — fork it, file an issue, or ship a patch.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 text-sm">
+          <div>
+            <p class="font-bold mb-3 sm:mb-4">Site</p>
+            <ul class="space-y-2 sm:space-y-3 opacity-60">
+              <li><a href="#top" class="hover:opacity-100">Home</a></li>
+              <li><a href="#catalog" class="hover:opacity-100">Categories</a></li>
+              <li><a href="#about" class="hover:opacity-100">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-bold mb-3 sm:mb-4">Connect</p>
+            <ul class="space-y-2 sm:space-y-3 opacity-60">
+              <li><a href="#" class="hover:opacity-100">GitHub</a></li>
+              <li><a href="#" class="hover:opacity-100">RSS</a></li>
+              <li><a href="#" class="hover:opacity-100">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-bold mb-3 sm:mb-4">Legal</p>
+            <ul class="space-y-2 sm:space-y-3 opacity-60">
+              <li><a href="#" class="hover:opacity-100">License</a></li>
+              <li><a href="#" class="hover:opacity-100">Privacy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs sm:text-sm opacity-50">© 2026 App Store. All apps open-source.</p>
+        <p class="text-xs sm:text-sm opacity-50">Built by hand, shipped in public.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
