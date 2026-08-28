@@ -276,7 +276,7 @@ function openModal(app) {
     <div class="detail-item"><strong>Topics</strong><span>${app.topics.length ? app.topics.join(", ") : "—"}</span></div>
     <div class="detail-item"><strong>Category</strong><span>${app.category}</span></div>
   `;
-  elements.repoLink.href = app.htmlUrl;
+  elements.repoLink.href = `${app.htmlUrl}/releases/latest`;
   elements.detailModal.classList.add("show");
 }
 
