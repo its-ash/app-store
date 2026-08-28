@@ -61,13 +61,43 @@ function renderIconMarkup(app, fallbackIndex = 0) {
   return `<img src="${app.icon}" alt="${app.name} icon" loading="lazy" onerror="this.remove(); this.parentElement.textContent='${fallback}';" />`;
 }
 
+const TOPIC_CATEGORY_ALIASES = {
+  android: "Mobile Apps",
+  ios: "Mobile Apps",
+  flutter: "Mobile Apps",
+  "react-native": "Mobile Apps",
+  mobile: "Mobile Apps",
+};
+
+function titleCaseTopic(topic) {
+  return topic
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
 function inferCategory(topics, language, repoName) {
-  const haystack = [...(topics || []), repoName || ""].join(" ").toLowerCase();
+  const topicList = (topics || []).map((t) => t.toLowerCase());
+
+  for (const category of Object.keys(CATEGORY_KEYWORDS)) {
+    if (topicList.includes(category.toLowerCase().replace(/\s*&\s*|\s+/g, "-"))) {
+      return category;
+    }
+  }
+
+  const haystack = [...topicList, repoName || ""].join(" ").toLowerCase();
   for (const [category, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
     if (keywords.some((kw) => haystack.includes(kw))) {
       return category;
     }
   }
+
+  for (const topic of topicList) {
+    if (TOPIC_CATEGORY_ALIASES[topic]) return TOPIC_CATEGORY_ALIASES[topic];
+  }
+  if (topicList.length) return titleCaseTopic(topicList[0]);
+
   if (language) {
     const lang = language.toLowerCase();
     if (lang === "go" || lang === "rust" || lang === "shell") return "CLI Tools";
@@ -164,8 +194,7 @@ function parseRepoEntry(entry) {
 }
 
 function guessInstallLink(owner, repo, repoData) {
-  const pagesUrl = `https://${owner}.github.io/${repo}/`;
-  return pagesUrl;
+  return `https://github.com/${owner}/${repo}/releases/latest`;
 }
 
 async function loadApps() {
@@ -276,7 +305,7 @@ function openModal(app) {
     <div class="detail-item"><strong>Topics</strong><span>${app.topics.length ? app.topics.join(", ") : "—"}</span></div>
     <div class="detail-item"><strong>Category</strong><span>${app.category}</span></div>
   `;
-  elements.repoLink.href = `${app.htmlUrl}/releases/latest`;
+  elements.repoLink.href = app.htmlUrl;
   elements.detailModal.classList.add("show");
 }
 
