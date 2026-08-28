@@ -1,5 +1,6 @@
 const APP_REPOS = [
   "https://github.com/its-ash/authenticator",
+  "https://github.com/its-ash/sms-clear"
 ];
 
 const CATEGORY_KEYWORDS = {
